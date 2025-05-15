@@ -1,0 +1,30 @@
+syntax = "proto3";
+package notification;
+
+option go_package = "notification-service/proto;notification";
+
+service NotificationService {
+  rpc ListUserNotifications (UserIdRequest) returns (ListNotificationsResponse);
+  rpc MarkAsRead (MarkAsReadRequest) returns (Empty);
+}
+
+message UserIdRequest {
+  string user_id = 1;
+}
+
+message NotificationResponse {
+  string id = 1;
+  string message = 2;
+  bool is_read = 3;
+  string created_at = 4;
+}
+
+message ListNotificationsResponse {
+  repeated NotificationResponse notifications = 1;
+}
+
+message MarkAsReadRequest {
+  string id = 1;
+}
+
+message Empty {}

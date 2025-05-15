@@ -1,0 +1,16 @@
+# Go binaries
+**/bin/
+**/out/
+*.exe
+*.out
+*.test
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/

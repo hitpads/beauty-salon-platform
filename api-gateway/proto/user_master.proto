@@ -1,0 +1,40 @@
+syntax = "proto3";
+package usermaster;
+
+option go_package = "user-master-service/proto;usermaster";
+
+service UserMasterService {
+  rpc RegisterUser (RegisterRequest) returns (UserResponse);
+  rpc LoginUser (LoginRequest) returns (LoginResponse);
+  rpc GetUserProfile (UserIdRequest) returns (UserResponse);
+  
+  // Master-specific
+  rpc ListMasters (Empty) returns (ListMastersResponse);
+  rpc GetMasterByID (MasterIdRequest) returns (MasterResponse);
+  rpc CreateMaster (CreateMasterRequest) returns (MasterResponse);
+  rpc UpdateMaster (UpdateMasterRequest) returns (MasterResponse);
+}
+
+message RegisterRequest { string name = 1; string email = 2; string password = 3; }
+message LoginRequest { string email = 1; string password = 2; }
+message UserIdRequest { string user_id = 1; }
+message MasterIdRequest { string master_id = 1; }
+
+message CreateMasterRequest {
+  string user_id = 1;
+  string bio = 2;
+  int32 experience = 3;
+}
+
+message UpdateMasterRequest {
+  string master_id = 1;
+  string bio = 2;
+  int32 experience = 3;
+}
+
+message Empty {}
+
+message UserResponse { string id = 1; string name = 2; string email = 3; string role = 4; }
+message MasterResponse { string id = 1; string name = 2; string bio = 3; double rating = 4; }
+message ListMastersResponse { repeated MasterResponse masters = 1; }
+message LoginResponse { string token = 1; UserResponse user = 2; }

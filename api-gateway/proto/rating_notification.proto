@@ -1,0 +1,40 @@
+syntax = "proto3";
+package rating;
+
+option go_package = "rating-notification-service/proto;rating_notification";
+
+service RatingService {
+  rpc CreateRating (CreateRatingRequest) returns (RatingResponse);
+  rpc ListMasterRatings (MasterIdRequest) returns (ListRatingsResponse);
+  rpc DeleteRating (DeleteRatingRequest) returns (Empty);
+}
+
+message CreateRatingRequest {
+  string master_id = 1;
+  string user_id = 2;
+  int32 score = 3;
+  string comment = 4;
+}
+
+message RatingResponse {
+  string id = 1;
+  string master_id = 2;
+  string user_id = 3;
+  int32 score = 4;
+  string comment = 5;
+  string created_at = 6;
+}
+
+message MasterIdRequest {
+  string master_id = 1;
+}
+
+message ListRatingsResponse {
+  repeated RatingResponse ratings = 1;
+}
+
+message DeleteRatingRequest {
+  string id = 1;
+}
+
+message Empty {}

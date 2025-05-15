@@ -1,0 +1,25 @@
+syntax = "proto3";
+package appointment;
+
+option go_package = "appointment-service/proto;serviceappointment";
+
+service ServiceAppointmentService {
+  rpc ListServices(Empty) returns (ListServicesResponse);
+  rpc GetServiceById(ServiceIdRequest) returns (ServiceResponse);
+
+  rpc CreateAppointment(CreateAppointmentRequest) returns (AppointmentResponse);
+  rpc ListUserAppointments(UserIdRequest) returns (ListAppointmentsResponse);
+  rpc CancelAppointment(AppointmentIdRequest) returns (Empty);
+}
+
+message Empty {}
+
+message ServiceIdRequest { string service_id = 1; }
+message ServiceResponse { string id = 1; string name = 2; string description = 3; int32 price_cents = 4; int32 duration_minutes = 5; }
+message ListServicesResponse { repeated ServiceResponse services = 1; }
+
+message CreateAppointmentRequest { string user_id = 1; string master_id = 2; string service_id = 3; string start_time = 4; }
+message AppointmentResponse { string id = 1; string status = 2; }
+message ListAppointmentsResponse { repeated AppointmentResponse appointments = 1; }
+message AppointmentIdRequest { string appointment_id = 1; }
+message UserIdRequest { string user_id = 1; }
