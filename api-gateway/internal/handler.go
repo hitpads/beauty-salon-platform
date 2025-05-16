@@ -21,7 +21,7 @@ type Gateway struct {
 	NotificationClient notificationpb.NotificationServiceClient
 }
 
-// Подключение к сервисам
+// CONNECT SERVICES
 func NewGateway(userAddr, appointmentAddr, ratingAddr, notificationAddr string) (*Gateway, error) {
 	userConn, err := grpc.Dial(userAddr, grpc.WithInsecure())
 	if err != nil {

@@ -40,7 +40,7 @@ func main() {
 	logrus.SetOutput(mw)
 	logrus.SetFormatter(&logrus.TextFormatter{
 		FullTimestamp: true,
-		ForceColors:   false, // Цвета не нужны для файла
+		ForceColors:   false,
 	})
 
 	gw, err := internal.NewGateway(
