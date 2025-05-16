@@ -5,6 +5,6 @@ type Appointment struct {
 	UserID    string
 	MasterID  string
 	ServiceID string
-	StartTime string // Можно time.Time, но для простоты string
-	Status    string // Например: "scheduled", "cancelled"
+	StartTime string
+	Status    string
 }

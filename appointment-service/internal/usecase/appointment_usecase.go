@@ -11,7 +11,7 @@ import (
 
 type AppointmentUsecase struct {
 	repo *repository.AppointmentRepository
-	nc   *nats.Conn // NATS connection for publishing events
+	nc   *nats.Conn // NATS connection for publishing
 }
 
 func NewAppointmentUsecase(repo *repository.AppointmentRepository, nc *nats.Conn) *AppointmentUsecase {

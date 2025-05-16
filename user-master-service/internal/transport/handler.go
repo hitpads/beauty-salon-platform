@@ -34,7 +34,7 @@ func (h *Handler) LoginUser(ctx context.Context, req *pb.LoginRequest) (*pb.Logi
 	if err != nil {
 		return nil, err
 	}
-	// тут должен быть JWT token, для MVP вернем просто id
+	// TOOD JWT
 	return &pb.LoginResponse{
 		Token: user.ID,
 		User: &pb.UserResponse{
@@ -68,7 +68,7 @@ func (h *Handler) ListMasters(ctx context.Context, req *pb.Empty) (*pb.ListMaste
 	for _, m := range masters {
 		resp.Masters = append(resp.Masters, &pb.MasterResponse{
 			Id:     m.ID,
-			Name:   m.UserID, // You may want to fetch the user's name instead of UserID
+			Name:   m.UserID,
 			Bio:    m.Bio,
 			Rating: m.Rating,
 		})
@@ -83,7 +83,7 @@ func (h *Handler) GetMasterByID(ctx context.Context, req *pb.MasterIdRequest) (*
 	}
 	return &pb.MasterResponse{
 		Id:     master.ID,
-		Name:   master.UserID, // You may want to fetch the user's name instead of UserID
+		Name:   master.UserID,
 		Bio:    master.Bio,
 		Rating: master.Rating,
 	}, nil
@@ -96,7 +96,7 @@ func (h *Handler) CreateMaster(ctx context.Context, req *pb.CreateMasterRequest)
 	}
 	return &pb.MasterResponse{
 		Id:     master.ID,
-		Name:   "", // можно запросить у User по user_id, если нужно
+		Name:   "", // TODO можно запросить у User по user_id
 		Bio:    master.Bio,
 		Rating: master.Rating,
 	}, nil

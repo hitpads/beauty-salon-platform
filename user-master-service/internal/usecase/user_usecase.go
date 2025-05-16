@@ -3,9 +3,10 @@ package usecase
 import (
 	"context"
 	"errors"
-	"github.com/google/uuid"
 	"user-master-service/internal/domain"
 	"user-master-service/internal/repository"
+
+	"github.com/google/uuid"
 )
 
 type UserUsecase struct {
@@ -34,7 +35,7 @@ func (u *UserUsecase) Login(ctx context.Context, email, password string) (*domai
 	if err != nil {
 		return nil, err
 	}
-	// Тут сравнивай хеш пароля (в проде используем bcrypt)
+	// TODO HASHING
 	if user.Password != password {
 		return nil, errors.New("invalid password")
 	}

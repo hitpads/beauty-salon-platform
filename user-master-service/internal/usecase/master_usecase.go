@@ -37,7 +37,6 @@ func (u *MasterUsecase) CreateMaster(ctx context.Context, userID, bio string, ex
 	if err != nil {
 		return nil, err
 	}
-	// Меняем роль пользователя на "master"
 	if err := u.userRepo.UpdateUserRole(ctx, userID, "master"); err != nil {
 		return nil, err
 	}
