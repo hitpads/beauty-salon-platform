@@ -11,6 +11,12 @@ type UserRepository struct {
 	db *sql.DB
 }
 
+type UserRepositoryInterface interface {
+	CreateUser(ctx context.Context, user *domain.User) error
+	GetUserByEmail(ctx context.Context, email string) (*domain.User, error)
+	GetUserByID(ctx context.Context, id string) (*domain.User, error)
+}
+
 func NewUserRepository(db *sql.DB) *UserRepository {
 	return &UserRepository{db: db}
 }

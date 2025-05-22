@@ -10,10 +10,10 @@ import (
 )
 
 type UserUsecase struct {
-	repo *repository.UserRepository
+	repo repository.UserRepositoryInterface
 }
 
-func NewUserUsecase(repo *repository.UserRepository) *UserUsecase {
+func NewUserUsecase(repo repository.UserRepositoryInterface) *UserUsecase {
 	return &UserUsecase{repo: repo}
 }
 
